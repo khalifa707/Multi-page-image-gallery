@@ -1,20 +1,23 @@
 <?php
 global $imageTitles;
+
 include './inc/functions.php';
 include './inc/images.php';
 ?>
 
 <?php include './views/header.php'; ?>
 
-<?php
-foreach ($imageTitles AS $src => $title):?>
+<div class="gallery-container">
+    <?php foreach($imageTitles AS $src => $title): ?>
+        <a href="image.php?<?php echo http_build_query(['image' => $src]); ?>" class="gallery-item">
+            <h3><?php echo e($title); ?></h3>
+            <img src="./images/<?php echo rawurlencode($src); ?>" alt="<?php echo e($title); ?>" />
+        </a>
+    <?php endforeach; ?>
+</div>
 
-    <a href="image.php <?php echo http_build_query(['images' =>$src]); ?>">
-<h3><?php echo e($title); ?></h3>
+<?php include './views/footer.php'; ?>
 
-<img src="<?php echo rawurldecode($src);?>" alt="<?php echo e($title);?>">
-    </a>
-<?php endforeach; ?>
 
 
 
